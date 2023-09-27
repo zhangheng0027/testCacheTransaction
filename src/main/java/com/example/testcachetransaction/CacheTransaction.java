@@ -17,7 +17,6 @@ public class CacheTransaction {
 
     private static final AtomicInteger ai = new AtomicInteger(0);
 
-
     @Lazy
     @Resource
     CacheTransaction self;
@@ -27,6 +26,9 @@ public class CacheTransaction {
     public String cacheStr(String s) {
         return s + ai.incrementAndGet();
     }
+
+
+
 
     @Transactional
     public String cacheTransaction(String s) {

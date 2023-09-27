@@ -29,10 +29,8 @@ class TestCacheTransactionApplicationTests {
     @Test
     public void test02() {
         Objects.requireNonNull(redisTemplate.getConnectionFactory()).getConnection().serverCommands().flushDb();
-
         cacheTransaction.cacheTransaction("abc");
         System.out.println(cacheTransaction.cacheStr("abc"));
-
     }
 
 }
