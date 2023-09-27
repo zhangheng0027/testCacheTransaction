@@ -34,16 +34,18 @@ class TUserServiceImplTest {
             connection.prepareStatement(createTable).execute();
             connection.prepareStatement("TRUNCATE table t_user").execute();
         }
+
+        Objects.requireNonNull(redisTemplate.getConnectionFactory()).getConnection().serverCommands().flushDb();
     }
 
     @Test
     public void test01() {
-        Objects.requireNonNull(redisTemplate.getConnectionFactory()).getConnection().serverCommands().flushDb();
 
         TUser user = new TUser();
         user.setAge(15);
         user.setName("Tom");
         tUserService.save(user);
+
         // load to cache
         tUserService.getUser(user.getName());
 

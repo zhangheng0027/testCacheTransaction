@@ -53,6 +53,9 @@ public class TUserServiceImpl extends ServiceImpl<TUserMapper, TUser>
         TUser user2 = self.getUser(user.getName());
         log.info("update after user: {}", user2);
 
+        TUser one = lambdaQuery().eq(TUser::getName, user.getName()).last("limit 1").one();
+        log.info("db user: {}", one);
+
         return user2;
     }
 
